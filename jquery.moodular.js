@@ -35,6 +35,7 @@ jQuery(function($){
 		this.nbItems = 0;
 		this.current = 0;
 		this.locked = false;
+		this.paused = false;
 		this.dep = 0;
 		this.timerMoving = null;
 		this.opts = opts;
@@ -268,7 +269,7 @@ jQuery(function($){
 			if (this.opts.startOn) {
 				this.opts.speed = this.speed;
 			}
-			if (this.opts.auto) {
+			if (this.opts.auto && !this.opts.paused) {
 				this.timerMoving = setTimeout(function(){
 					self._animate('next');
 				}, this.opts.dispTimeout);
@@ -293,7 +294,7 @@ jQuery(function($){
 			});
 		},
 		reanimate: function() {
-			if (!this.opts.auto) {
+			if (!this.opts.auto && !this.opts.paused) {
 				this.locked = false;
 				this.opts.auto = true;
 				var self = this;
