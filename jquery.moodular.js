@@ -139,6 +139,9 @@ jQuery(function($){
 			}
 		},
 		_beforeMoving: function(){
+                        // adding triggerHandler
+                        this.e.triggerHandler('slidebeforemoving');
+
 			var effect = this.opts.effects.split(' ');
 			var i;
 			for (i = 0; i < effect.length; i++) {
@@ -270,6 +273,9 @@ jQuery(function($){
 					self._animate('next');
 				}, this.opts.dispTimeout);
 			}
+
+                        // adding triggerHandler
+                        this.e.triggerHandler('slideaftermoving');
 		},
 		_realpos: function(i){
 			if (i < 0) i = (this.nbItems / 2) - i;
